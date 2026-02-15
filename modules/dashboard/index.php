@@ -3,8 +3,13 @@ if (!defined("_HIENU")) {
     die("Truy cập không hợp lệ!");
 }
 ?>
-<?php require_once "./templates/layouts/header.php"; ?>
-<?php require_once "./templates/layouts/sidebar.php"; ?>
+<?php 
+    $data = [
+        'title' => 'Hệ thống MinhHieuDEV',
+    ];
+    layout("header", $data);
+    layout("sidebar");
+?>
 <!--begin::App Main-->
 <main class="app-main">
     <?php require_once "./templates/layouts/breadcrumb.php" ?>
@@ -132,4 +137,4 @@ if (!defined("_HIENU")) {
 <!--end::App Main-->
 <!--begin::Footer-->
 
-<?php require_once "./templates/layouts/footer.php"; ?>
+<?php layout("footer"); ?>

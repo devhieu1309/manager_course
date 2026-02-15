@@ -10,62 +10,62 @@ layout("header-auth", $data);
 
 if (isPost()) {
     $filter = filterData();
-    $error = [];
+    $errors = [];
 
     // Validate fullname
     if (empty(trim($filter['fullname']))) {
-        $error['fullname']['required'] = 'Họ tên bắt buộc phải nhập.';
+        $errors['fullname']['required'] = 'Họ tên bắt buộc phải nhập.';
     } else {
         if (strlen(trim($filter['fullname'])) < 5) {
-            $error['fullname']['length'] = 'Họ tên phải lớn hơn 5 kí tự.';
+            $errors['fullname']['length'] = 'Họ tên phải lớn hơn 5 kí tự.';
         }
     }
 
     // Validate email
     if (empty(trim($filter['email']))) {
-        $error['email']['required'] = 'Email bắt buộc phải nhập.';
+        $errors['email']['required'] = 'Email bắt buộc phải nhập.';
     } else {
         // Đúng định dạng email, email này đã tồn tại trong CSDL chưa
         if (!validateEmail(trim($filter['email']))) {
-            $error['email']['isEmail'] = 'Email không đúng định dạng.';
+            $errors['email']['isEmail'] = 'Email không đúng định dạng.';
         } else {
             $email = $filter['email'];
 
             $checkEmail = getRows("SELECT * FROM users WHERE email = '$email'");
             if ($checkEmail > 0) {
-                $error['email']['check'] = 'Email đã tồn tại.';
+                $errors['email']['check'] = 'Email đã tồn tại.';
             }
         }
     }
 
     // Validate phone
     if (empty(trim($filter['phone']))) {
-        $error['phone']['required'] = 'Số điện thoại bắt buộc phải nhập.';
+        $errors['phone']['required'] = 'Số điện thoại bắt buộc phải nhập.';
     } else {
         if (!isPhone(trim($filter['phone']))) {
-            $error['phone']['isPhone'] = 'Số điện thoại không đúng định dạng.';
+            $errors['phone']['isPhone'] = 'Số điện thoại không đúng định dạng.';
         }
     }
 
     // Validate password
     if (empty(trim($filter['password']))) {
-        $error['password']['required'] = 'Mật khẩu bắt buộc phải nhập.';
+        $errors['password']['required'] = 'Mật khẩu bắt buộc phải nhập.';
     } else {
         if (strlen(trim($filter['password'])) < 6) {
-            $error['password']['length'] = 'Mật khẩu phải lớn hơn 6 kí tự.';
+            $errosr['password']['length'] = 'Mật khẩu phải lớn hơn 6 kí tự.';
         }
     }
 
     // Validate confirm password
     if (empty(trim($filter['confirm_password']))) {
-        $error['confirm_password']['required'] = 'Vui lòng nhập lại mật khẩu.';
+        $errosr['confirm_password']['required'] = 'Vui lòng nhập lại mật khẩu.';
     } else {
         if (trim($filter['password']) !== trim($filter['confirm_password'])) {
-            $error['confirm_password']['like'] = 'Mật khẩu nhập lại không khớp.';
+            $esrror['confirm_password']['like'] = 'Mật khẩu nhập lại không khớp.';
         }
     }
 
-    if (empty($error)) {
+    if (empty($errors)) {
         // Table: users, data;
         $activeToken = sha1(uniqid() . time());
         $data = [

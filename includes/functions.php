@@ -180,3 +180,15 @@ function formError($error, $fieldName){
 function oldDate($oldData, $fieldName) {
     return (!empty($oldData[$fieldName])) ? $oldData[$fieldName] : '';
 }
+
+// Hàm chuyển hướng
+function redirect($path, $pathFull = false) {
+    if($pathFull){
+        header("Location: $path");
+        exit();
+    }else {
+        $url = _HOST_URL . $path;
+         header("Location: $url");
+        exit();
+    }
+}
