@@ -14,8 +14,6 @@ require_once './includes/mailer/SMTP.php';
 
 require_once "./includes/functions.php";
 
-$rel = sendMail('pmhieudev1309@gmail.com', 'Test', 'Test content');
-var_dump($rel);
 
 $module = _MODULES;
 $action = _ACTION;

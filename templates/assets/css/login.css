@@ -13,3 +13,9 @@ height: calc(100% - 73px);
 height: 100%;
 }
 }
+
+.error {
+    padding: 5px;
+    font-style: italic;
+    color: red;
+}

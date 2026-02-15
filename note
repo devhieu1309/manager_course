@@ -1,0 +1,8 @@
+PASSWORD_HASH()
+PASSWORD_VARIFY()
+
+CODE TÍNH NĂNG ĐĂNG KÝ TÀI KHOẢN
+- Kiểm tra và xử lý dữ liệu đầu vào ở form đăng ký (dữ liệu sách)
+- Insert vào bảng user trong database
+- Gửi mail cho người dùng (email chứa đường link kích hoạt tài khoản)
+- Người dùng click và link kích hoạt => Xử lý active cho tài khoản
