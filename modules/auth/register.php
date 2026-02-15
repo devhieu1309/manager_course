@@ -83,7 +83,7 @@ if (isPost()) {
         if ($insertStatus) {
             $emailTo = $filter['email'];
             $subject = 'Kích hoạt tài khoản hệ thống MinhHieuDEV';
-            $content = "Chúc mừng bạn đã đăng ký thành công tài khaorn tại MinhHieuDEV <br>";
+            $content = "Chúc mừng bạn đã đăng ký thành công tài khoản tại MinhHieuDEV <br>";
             $content .= "Để kích hoạt tài khoản, bạn hãy click vào đường link bên dưới: <br>";
             $content .= _HOST_URL . '?module=auth&action=active&token=' . $activeToken . '<br>';
             $content .= "Cảm ơn bạn đã ủng hộ MinhHieuDEV!!";
