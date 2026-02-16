@@ -151,15 +151,15 @@ function isPhone($phone)
     $phoneFirst = false;
     if ($phone[0] == '0') {
         $phoneFirst = true;
-        $phone = substr($phone,1);
+        $phone = substr($phone, 1);
     }
 
     $checkPhone = false;
-    if(validateInt($phone)) {
+    if (validateInt($phone)) {
         $checkPhone = true;
     }
 
-    if($phoneFirst & $checkPhone) {
+    if ($phoneFirst & $checkPhone) {
         return true;
     }
 
@@ -167,28 +167,47 @@ function isPhone($phone)
 }
 
 // Thông báo lỗi
-function getMsg($msg, $type = 'success'){
+function getMsg($msg, $type = 'success')
+{
     echo '<div class="annouce-message alert alert-' . $type . '">' . $msg . '</div>';
 }
 
 // Hiển thị lỗi
-function formError($error, $fieldName){
+function formError($error, $fieldName)
+{
     return (!empty($error[$fieldName])) ? '<div class="error">' . reset($error[$fieldName]) . '</div>' : false;
 }
 
 // Hamf hiển thị lại giá trị cũ
-function oldDate($oldData, $fieldName) {
+function oldDate($oldData, $fieldName)
+{
     return (!empty($oldData[$fieldName])) ? $oldData[$fieldName] : '';
 }
 
 // Hàm chuyển hướng
-function redirect($path, $pathFull = false) {
-    if($pathFull){
+function redirect($path, $pathFull = false)
+{
+    if ($pathFull) {
         header("Location: $path");
         exit();
-    }else {
+    } else {
         $url = _HOST_URL . $path;
-         header("Location: $url");
+        header("Location: $url");
         exit();
     }
+}
+
+// Check login
+function checkLogin()
+{
+    $checkLogin = false;
+    $tokenLogin = getSessionFlash('token_login');
+    $checkToken = getOne("SELECT * FROM token_login WHERE token = '$tokenLogin'");
+    if (!empty($checkToken)) {
+        $checkLogin = true;
+    } else {
+        removeSession('token_login');
+    }
+
+    return $checkLogin;
 }
