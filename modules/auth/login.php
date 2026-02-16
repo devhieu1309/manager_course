@@ -69,7 +69,7 @@ if (isPost()) {
                         $token = sha1(uniqid() . time());
 
                         // Gán token lên session
-                        setSessionFlash('token_login', $token);
+                        setSession('token_login', $token);
                         $data = [
                             'token' => $token,
                             'user_id' => $checkEmail['id'],
@@ -77,9 +77,6 @@ if (isPost()) {
                         ];
                         $inserToken = insert('token_login', $data);
                         if ($inserToken) {
-                            setsessionFlash('msg', 'Đăng nhập thành công.');
-                            setsessionFlash('msg_type', 'success');
-
                             redirect("/");
                         } else {
                             setsessionFlash('msg', 'Đăng nhập không thành công.');
