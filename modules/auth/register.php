@@ -58,10 +58,10 @@ if (isPost()) {
 
     // Validate confirm password
     if (empty(trim($filter['confirm_password']))) {
-        $errosr['confirm_password']['required'] = 'Vui lòng nhập lại mật khẩu.';
+        $errors['confirm_password']['required'] = 'Vui lòng nhập lại mật khẩu.';
     } else {
         if (trim($filter['password']) !== trim($filter['confirm_password'])) {
-            $esrror['confirm_password']['like'] = 'Mật khẩu nhập lại không khớp.';
+            $errors['confirm_password']['like'] = 'Mật khẩu nhập lại không khớp.';
         }
     }
 
@@ -102,13 +102,13 @@ if (isPost()) {
         setsessionFlash('msg_type', 'danger');
 
         setSessionFlash('oldData', $filter);
-        setSessionFlash('error', $error);
+        setSessionFlash('errors', $errors);
     }
 
     $msg = getSessionFlash('msg');
     $msg_type = getSessionFlash('msg_type');
     $oldData = getSessionFlash('oldData');
-    $errorArray = getSessionFlash('error');
+    $errorArray = getSessionFlash('errors');
 }
 ?>
 <section class="vh-100">
